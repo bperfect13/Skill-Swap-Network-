@@ -11,8 +11,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build...'
-                sh 'sh 'python app.py'
-'
+                sh '''
+                  apt-get update
+                  apt-get install -y python3
+                  python3 app.py
+                '''
             }
         }
     }
