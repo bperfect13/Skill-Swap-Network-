@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10-slim'
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout SCM') {
@@ -14,9 +10,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Running build in Python container...'
-                sh 'python --version'
-                sh 'python app.py'
+                echo 'Running build...'
+                sh 'python app.py || python3 app.py'
             }
         }
     }
